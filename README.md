@@ -3,18 +3,16 @@
 ## Project: Ten Thousand
 
 ## Author: 
-### Driver : Almoutaz Abutaha
+### Driver : Maysaa AlBataineh
 ### Navigator : Firas Awadallah
-### Navigator : Maysaa AlBataineh
+### Navigator : Almoutaz Abutaha
 
 ## Links and Resources : [ChatGpt openai](./chatgpt.md)
 
 ## How to initialize/run your application (where applicable)
 
-=> python3 ten_thousand/game_logic.py
+=> python3 python ten_thousand/game.py
 
-=> pytest tests/version_1/test_calculate_score.py
 
-=> pytest tests/version_1/test_roll_dice.py
 
 [Ten Thousand](https://github.com/MutazAbutaha/ten-thousand)
