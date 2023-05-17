@@ -1,80 +1,79 @@
 import random
-
-class GameLogic:
+class GameLogic :
     @staticmethod
-    def calculate_score(dice_roll):
+    def roll_dice(num_dice=6):
+        """
+        Rolls the six dice.
+        Parameters:
+        num_dice (int): The number of dice to roll.
+        Returns:
+        tuple: A tuple containing the values of the six dice rolled.
+        """
+        dice_values = []
+        for i in range(num_dice):
+            dice_values.append(random.randint(1, 6))
+        return tuple(dice_values)
+    @staticmethod
+    def calculate_score(dice):
+        """
+        Calculates the score for a roll of Dice10000.
+        Parameters:
+        dice (tuple): A tuple containing the values of the six dice rolled.
+        Returns:
+        int: The total score for the roll.
+        """
         score = 0
-        counts = [0] * 6  # Initialize counts for each dice face
-
-        # Count the occurrences of each dice face
-        for die in dice_roll:
-            if 1 <= die <= 6:
-                counts[die - 1] += 1
-
-        # Calculate the score based on the counts
-        for i in range(6):
-            count = counts[i]
-            face_value = i + 1
-
-            if count >= 3:  # Three or more of the same face value
-                if face_value == 1:
+        dice_counts = [dice.count(i) for i in range(1, 7)]
+        # Calculate the score for ones, fives, and three-of-a-kind
+        for value, count in enumerate(dice_counts, 1):
+            if count >= 3:
+                if value == 1:
                     score += 1000
                 else:
-                    score += face_value * 100
-
+                    score += value * 100
                 count -= 3
-
-                # Special case for six ones
-                if face_value == 1 and count > 0:
-                    score *= 2 ** count
-
-            # Calculate additional points for individual ones and fives
-            if face_value == 1:
+            if value == 1:
                 score += count * 100
-            elif face_value == 5:
+            elif value == 5:
                 score += count * 50
-
-            # Calculate points for four, five, or six of a kind
-            if dice_roll == (2,2,2,2):
-                score = 400
-            if dice_roll == (2,2,2,2,2):
-                score = 600
-            if dice_roll == (2,2,2,2,2,2):
-                score = 800
-            if dice_roll == (1,1,1,1,1,1):
-                score = 4000
+        # Calculate the score for four-of-a-kind
+        for value, count in enumerate(dice_counts, 1):
             if count >= 4:
-                if face_value == 1:
-                    score += 1000 * (2 ** (count - 4))
-                else:
-                    score += (2 ** (count - 3)) * (face_value * 100)
-
-        # Calculate points for a straight
-        if set(dice_roll) == {1, 2, 3, 4, 5, 6}:
-            score = 1500
-        elif sorted(set(dice_roll)) == [1, 2, 3, 4, 5]:
+                if value == 5:
+                    score += value * 100 - 50
+                elif value == 1:
+                    score += 900
+                else :
+                    score += value * 100
+        # Calculate the score for a straight
+        if all(dice_counts[i] == 1 for i in range(6)):
+            score += 1350
+        # Calculate the score for three pairs
+        if dice_counts.count(2) == 3:
             score += 1500
-
-        # Calculate points for three pairs
-        if len(set(dice_roll)) == 3 and all(count >= 2 for count in counts):
-            score += 1000
-
-        # Calculate points for a full house
-        if len(set(dice_roll)) == 2 and 2 in counts and 3 in counts:
-            score = 1500
-
+        # Calculate the score for a five-of-a-kind
+        if 5 in dice_counts:
+            value = dice_counts.index(5) + 1
+            if value == 1:
+                score += 900
+            elif value == 5:
+                score += 450
+            else:
+                score += value * 100
+        # Calculate the score for a six-of-a-kind
+        if 6 in dice_counts:
+            value = dice_counts.index(6) + 1
+            if value == 1:
+                score += 1800
+            elif value == 5:
+                score += 900
+            else:
+                score += value * 200
         return score
     
-    @staticmethod
-    def roll_dice(num_dice):
-        if not isinstance(num_dice, int) or not (1 <= num_dice <= 6):
-            raise ValueError("Number of dice must be an integer between 1 and 6.")
-
-        return tuple(random.randint(1, 6) for _ in range(num_dice))
-
-
+    # Call the function
+    
 if __name__ == "__main__":
-        
-    dice_roll = (5,)
-    score = GameLogic.calculate_score(dice_roll)
-    print(score)
+    game = GameLogic()
+    roll_dice = game.roll_dice()
+    print(game.calculate_score(roll_dice))
