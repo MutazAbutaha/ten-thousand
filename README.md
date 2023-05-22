@@ -17,4 +17,3 @@
 
 [Ten Thousand](https://github.com/MutazAbutaha/ten-thousand)
 
-# hi
