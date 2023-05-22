@@ -3,8 +3,8 @@
 ## Project: Ten Thousand
 
 ## Author: 
-### Driver : Maysaa AlBataineh
-### Navigator : Firas Awadallah
+### Driver : Firas Awadallah 
+### Navigator : Maysaa AlBataineh
 ### Navigator : Almoutaz Abutaha
 
 ## Links and Resources : [ChatGpt openai](./chatgpt.md)
