@@ -1,3 +1,4 @@
+
 try:
     from ten_thousand.game_logic import GameLogic
 except:
@@ -9,3 +10,4 @@ class Game(GameLogic):
          GameLogic().play_game()
 if __name__ == "__main__":
     play()
+
