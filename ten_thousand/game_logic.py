@@ -14,9 +14,10 @@ class GameLogic :
         for i in range(num_dice):
             dice_values.append(random.randint(1, 6))
         return tuple(dice_values)
+    
     @staticmethod
-
     def calculate_score(dice):
+
         """
         Calculates the score for a roll of Dice10000.
         Parameters:
@@ -138,6 +139,8 @@ class GameLogic :
                         continue
                     k = len(GameLogic.get_scorers(dice_to_keep))
                     dice_remaining -= k
+                    if dice_remaining == 0 :
+                        dice_remaining = 6
                     points = GameLogic.calculate_score(dice_to_keep)
                     final_points += points
                     print(f"You have {final_points} unbanked points and {dice_remaining} dice remaining")
@@ -172,6 +175,7 @@ class GameLogic :
                         break
         else:
             print("OK. Maybe another time")
+
     @staticmethod
     def validate_keepers(roll, keepers):
         roll, keepers = list(roll), list(keepers)
@@ -181,6 +185,7 @@ class GameLogic :
             elif value not in roll:
                 return False
         return True
+    
     @staticmethod
     def get_scorers(dice):
         all_dice_score = GameLogic.calculate_score(dice)
@@ -193,6 +198,7 @@ class GameLogic :
             if sub_score != all_dice_score :
                 scorers.append(value)
         return tuple(scorers)
+    
 if __name__ == "__main__":
     game = GameLogic()
     game.play_game(10)

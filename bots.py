@@ -1,11 +1,14 @@
 """Place in root of Ten Thousand Project,
 at same level as pyproject.toml
 """
+
 from abc import ABC, abstractmethod
 import builtins
 import re
 from ten_thousand.game import Game
 from ten_thousand.game_logic import GameLogic
+
+
 class BaseBot(ABC):
     """Base class for Ten Thousand Game bots"""
     def __init__(self, print_all=False):
@@ -95,7 +98,7 @@ class YourBot(BaseBot):
     def _roll_bank_or_quit(self):
         """your logic here"""
         if self.unbanked_points>=1000 or self.dice_remaining<=2:
-         return "b"
+            return "b"
         else :
             return "r"
     def _enter_dice(self):
