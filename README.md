@@ -17,4 +17,6 @@
 
 => pytest tests/version_1/test_roll_dice.py
 
+=> python3 bots.py      
+
 [Ten Thousand](https://github.com/MutazAbutaha/ten-thousand)
