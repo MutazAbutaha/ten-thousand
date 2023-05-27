@@ -15,5 +15,9 @@
 
 
 
+
+=> python3 bots.py      
+
 [Ten Thousand](https://github.com/MutazAbutaha/ten-thousand)
+
 
